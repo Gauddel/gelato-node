@@ -27,7 +27,6 @@ const gelatoCore = new web3Provider.eth.Contract(gelatoCoreABI, gelatoCoreAddres
 const executor = new web3Provider.eth.Contract(executorInterface.abi, executorAddress);
 const gelatoCoreExtension = new web3Provider.eth.Contract(gelatoCoreExtensionInterface.abi, gelatoCoreExtensionAddress);
 
-
 // Global constant
 
 // Global Variable
