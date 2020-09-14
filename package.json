@@ -1,0 +1,16 @@
+{
+  "name": "gelato-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@truffle/contract": "^4.2.22",
+    "dotenv": "^8.2.0",
+    "web3": "^1.2.11"
+  }
+}
