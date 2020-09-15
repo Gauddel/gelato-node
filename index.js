@@ -31,7 +31,7 @@ const gelatoCoreExtension = new web3Provider.eth.Contract(gelatoCoreExtensionInt
 
 // Global Variable
 
-var fromBlock = 7197254; // Creation of Executor contract.
+var fromBlock = process.env.BLOCK; // Creation of Executor contract.
 var validTask = [];
 
 // Global Variable
@@ -53,14 +53,10 @@ async function CheckGelatoCoreSubmitTaskEventAndExecute() { // Get not expired p
             validTask.forEach(async (task) => {
                 var gasPrice = await web3Provider.eth.getGasPrice();
                 const canExec = await executor.methods.canExec(task, '5000000', gasPrice).call();
-                console.log(canExec, 'Test');
-                if (String(canExec) === "InvalidExecutor" || String(canExec).toUpperCase() == "OK") {
+                console.log(canExec);
+                if (String(canExec).toUpperCase() == "OK") { // String(canExec) === "InvalidExecutor" || 
                     gasPrice = await gelatoCoreExtension.methods.getGasPrice().call({from: userAddress});
                     var gasNeeded = await gelatoCoreExtension.methods.getGelatoMaxGas().call({from: userAddress});
-                    console.log(gasPrice);
-                    console.log(gasNeeded);
-                    var gas = await executor.methods.exec(task).estimateGas({from:userAddress, gas: gasNeeded, gasPrice : gasPrice});
-                    //var gasPrice = await web3Provider.eth.getGasPrice();
                     var walletAccount = web3Provider.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
                     var nonce = await web3Provider.eth.getTransactionCount(userAddress);
                     var txParams = {

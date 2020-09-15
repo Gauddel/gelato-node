@@ -67,9 +67,14 @@ async function submitTask() {
         module: providerModuleGelatoUserProxy
     };
 
+    const simpleCondition = {
+        inst: gelatoConditionAddress,
+        data: '0x'
+    }
+
     const simpleAction = {
         addr: gelatoActionAddress,
-        data: gelatoAction.methods.action(5).encodeABI(),
+        data: gelatoAction.methods.action(10).encodeABI(),
         operation: Operation.Call,
         dataFlow: DataFlow.None,
         value: '0',
@@ -85,7 +90,7 @@ async function submitTask() {
     }
 
     const task = {
-        conditions: [],
+        conditions: [simpleCondition],
         actions: [simpleAction, setNotOkAction],
         selfProviderGasLimit: new web3Provider.utils.BN("0"),
         selfProviderGasPriceCeil: new web3Provider.utils.BN('0'),
